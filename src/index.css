@@ -1,0 +1,405 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #101722;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  background: #101722;
+}
+
+.topbar {
+  height: 75px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1b2735;
+  border-bottom: 1px solid #34404d;
+}
+
+.brand {
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.brand-icon, .brand-red {
+  color: #ed3d49;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.demo-tag {
+  color: #25dba0;
+  border: 1px solid #25dba0;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #273748;
+  padding: 9px 16px;
+  border-radius: 8px;
+}
+
+.wallet span {
+  color: #aab8c6;
+  font-size: 10px;
+}
+
+.wallet strong {
+  color: #25dba0;
+}
+
+.container {
+  max-width: 1250px;
+  width: 94%;
+  margin: 25px auto;
+}
+
+.history {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.history-title {
+  font-size: 11px;
+  color: #9caabb;
+  font-weight: bold;
+}
+
+.history-chip {
+  padding: 8px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #263548;
+}
+
+.history-chip.low { color: #f5b3b8; }
+.history-chip.medium { color: #c59aff; }
+.history-chip.high { color: #ffbf50; }
+
+.game-board {
+  background: #1c2938;
+  border: 1px solid #344557;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.board-top {
+  height: 48px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #253647;
+  color: #cbd6e1;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #27dc9c;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #27dc9c;
+}
+
+.round-number {
+  margin-left: auto;
+  color: #ed4853;
+}
+
+.flight-area {
+  height: 420px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 55% 90%, #263d55, transparent 55%),
+    linear-gradient(160deg, #152b3d, #0b1726);
+}
+
+.flight-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .14;
+  background-image:
+    linear-gradient(#7890a6 1px, transparent 1px),
+    linear-gradient(90deg, #7890a6 1px, transparent 1px);
+  background-size: 45px 45px;
+}
+
+.flight-content {
+  position: absolute;
+  z-index: 3;
+  top: 27%;
+  width: 100%;
+  text-align: center;
+}
+
+.multiplier {
+  font-size: clamp(65px, 10vw, 110px);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 28px #ed3548;
+}
+
+.flight-status {
+  color: #b4c1ce;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-top: 12px;
+}
+
+.flight-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.trail-line {
+  fill: none;
+  stroke: url(#trail);
+  stroke-width: 4;
+}
+
+.trail-glow {
+  fill: none;
+  stroke: #ed3949;
+  stroke-width: 15;
+  opacity: .18;
+  filter: blur(8px);
+}
+
+.aircraft {
+  position: absolute;
+  z-index: 4;
+  color: #ff5362;
+  font-size: 42px;
+  transform: rotate(-22deg);
+  text-shadow: 0 0 18px #ff3549;
+  transition: left .12s linear, bottom .12s linear;
+}
+
+.countdown {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #aebdcb;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.crashed .flight-content {
+  top: 32%;
+}
+
+.crashed-text {
+  color: #f04c59;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.crash-value {
+  color: #f04c59;
+  font-size: 80px;
+  font-weight: 900;
+  margin-top: 12px;
+}
+
+.players {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: #202f40;
+  color: #aab8c6;
+  font-size: 12px;
+}
+
+.bet-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 20px;
+}
+
+.bet-panel {
+  background: #29394b;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.panel-heading span {
+  color: #26dca0;
+  font-size: 11px;
+}
+
+.bet-panel label {
+  font-size: 11px;
+  color: #aab8c6;
+}
+
+.bet-input {
+  display: flex;
+  background: #192635;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.bet-input button {
+  width: 45px;
+  border: none;
+  background: #34485b;
+  color: white;
+  cursor: pointer;
+}
+
+.bet-input button:disabled {
+  opacity: .4;
+}
+
+.bet-input input {
+  width: 100%;
+  min-width: 0;
+  padding: 13px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  text-align: center;
+}
+
+.quick-bets {
+  display: flex;
+  gap: 8px;
+}
+
+.quick-bets button {
+  flex: 1;
+  padding: 8px 3px;
+  border: 1px solid #506176;
+  background: #202f40;
+  color: #d9e1e9;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.quick-bets button:disabled {
+  opacity: .4;
+}
+
+.bet-button {
+  width: 100%;
+  min-height: 48px;
+  border: none;
+  border-radius: 7px;
+  background: #25c98d;
+  color: #10251e;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.bet-button:disabled {
+  background: #526170;
+  color: #c4cdd6;
+  cursor: not-allowed;
+}
+
+.bet-button.cash-button {
+  background: #e5a83d;
+  color: #241800;
+}
+
+.win-message {
+  color: #28e2a0;
+  font-size: 12px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  color: #718194;
+  font-size: 11px;
+  padding: 25px 10px;
+}
+
+@media (max-width: 650px) {
+  .topbar {
+    height: 65px;
+    padding: 0 12px;
+  }
+
+  .brand { font-size: 19px; }
+  .top-right { gap: 7px; }
+  .demo-tag { padding: 6px; font-size: 9px; }
+  .wallet { padding: 7px 9px; }
+  .wallet span { font-size: 8px; }
+  .wallet strong { font-size: 13px; }
+
+  .container {
+    width: 96%;
+    margin: 15px auto;
+  }
+
+  .history { gap: 6px; }
+  .history-title { width: 100%; }
+  .history-chip { padding: 7px 9px; font-size: 10px; }
+
+  .flight-area { height: 310px; }
+  .flight-content { top: 30%; }
+
+  .bet-panels {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .bet-panel { padding: 16px; }
+
+  .players {
+    font-size: 10px;
+    padding: 12px;
+  }
+}
