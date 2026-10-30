@@ -27,7 +27,7 @@ const WalletModal = ({ userId, currentBalance, onClose }) => {
   const [dynamicQr, setDynamicQr] = useState('');
 
   useEffect(() => {
-    axios.get(`https://aviator-backend-zrmq.onrender.com/api/user/balance/${userId}`)
+    axios.get(`https://aviator-swaraj1.onrender.com/api/user/balance/${userId}`)
       .then(res => {
         setWagerInfo({
           totalDeposited: res.data.totalDeposited || 0,
@@ -56,7 +56,7 @@ const WalletModal = ({ userId, currentBalance, onClose }) => {
     
     setLoading(true); setMsg({ text: '', type: '' });
     try {
-      const res = await axios.post('https://aviator-backend-zrmq.onrender.com/api/user/deposit', { 
+      const res = await axios.post('https://aviator-swaraj1.onrender.com/api/user/deposit', { 
         userId, amount: depAmount, utr, upiUsed: selectedUpi.upi 
       });
       setMsg({ text: res.data.msg, type: 'success' });
@@ -85,7 +85,7 @@ const WalletModal = ({ userId, currentBalance, onClose }) => {
     }
 
     try {
-      const res = await axios.post('https://aviator-backend-zrmq.onrender.com/api/user/withdraw', { 
+      const res = await axios.post('https://aviator-swaraj1.onrender.com/api/user/withdraw', { 
         userId, amount: withAmount, withdrawMode, 
         upiId: withdrawMode === 'UPI' ? upiId : null,
         bankDetails: withdrawMode === 'BANK' ? bankDetails : null
@@ -93,7 +93,7 @@ const WalletModal = ({ userId, currentBalance, onClose }) => {
       setMsg({ text: res.data.msg, type: 'success' });
       setWithAmount(''); setUpiId(''); setBankDetails({ accountNo: '', ifsc: '', name: '' });
       
-      const info = await axios.get(`https://aviator-backend-zrmq.onrender.com/api/user/balance/${userId}`);
+      const info = await axios.get(`https://aviator-swaraj1.onrender.com/api/user/balance/${userId}`);
       setWagerInfo({
         totalDeposited: info.data.totalDeposited || 0,
         totalWagered: info.data.totalWagered || 0,

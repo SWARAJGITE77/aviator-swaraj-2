@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 
-const socket = io("https://aviator-backend-zrmq.onrender.com");
-const API = "https://aviator-backend-zrmq.onrender.com/api/admin";
+const socket = io("https://aviator-swaraj1.onrender.com");
+const API = "https://aviator-swaraj1.onrender.com/api/admin";
 
 const AdminPanel = () => {
   const [token, setToken] = useState(localStorage.getItem('adminToken') || null);

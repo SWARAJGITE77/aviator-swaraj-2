@@ -15,7 +15,7 @@ const AuthPage = ({ onLogin }) => {
     setMsg({ text: '', type: '' });
     
     try {
-      const url = isLogin ? 'https://aviator-backend-zrmq.onrender.com/api/auth/login' : 'https://aviator-backend-zrmq.onrender.com/api/auth/register';
+      const url = isLogin ? 'https://aviator-swaraj1.onrender.com/api/auth/login' : 'https://aviator-swaraj1.onrender.com/api/auth/register';
       
       // Agar Signup hai toh mobile bhi bhejo, warna sirf email-password
       const payload = isLogin ? { email, password } : { email, mobile, password };
