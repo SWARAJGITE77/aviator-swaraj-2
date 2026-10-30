@@ -5,7 +5,7 @@ import WalletModal from './WalletModal';
 import AuthPage from './AuthPage'; // Auth Page import kiya
 import './App.css';
 
-const socket = io("http://localhost:3001");
+const socket = io("https://aviator-backend-zrmq.onrender.com");
 
 function App() {
   // Local storage se user check karo
@@ -29,7 +29,7 @@ function App() {
 
   const fetchUserData = async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/api/user/balance/${userId}`);
+      const res = await axios.get(`https://aviator-backend-zrmq.onrender.com/api/user/balance/${userId}`);
       setBalance(res.data.balance);
       setWagerInfo({ remainingWager: res.data.remainingWager });
     } catch (err) { console.log(err); }
@@ -82,7 +82,7 @@ function App() {
         setBets(old => old.map((bt, idx) => idx === i ? null : bt));
         
         try {
-          await axios.post('http://localhost:3001/api/user/cashout', { userId, winAmount: win });
+          await axios.post('https://aviator-backend-zrmq.onrender.com/api/user/cashout', { userId, winAmount: win });
         } catch (err) { console.log(err); }
       }
     });
@@ -133,7 +133,7 @@ function App() {
     setBets(old => old.map((b, i) => i === index ? { amount, cashedOut: false, win: 0 } : b));
     
     try {
-      await axios.post('http://localhost:3001/api/user/track-bet', { userId, amount });
+      await axios.post('https://aviator-backend-zrmq.onrender.com/api/user/track-bet', { userId, amount });
     } catch (err) {
       console.log("Error tracking bet", err);
       fetchUserData(); 
@@ -150,7 +150,7 @@ function App() {
     setBets(old => old.map((b, i) => i === index ? null : b));
 
     try {
-      await axios.post('http://localhost:3001/api/user/cashout', { userId, winAmount: winnings });
+      await axios.post('https://aviator-backend-zrmq.onrender.com/api/user/cashout', { userId, winAmount: winnings });
     } catch (err) {
       console.log("Error cashing out", err);
       fetchUserData(); 
