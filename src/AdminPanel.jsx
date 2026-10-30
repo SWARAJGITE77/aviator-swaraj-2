@@ -89,16 +89,41 @@ const AdminPanel = () => {
   };
 
   const handleDepositAction = async (id, action) => {
-    await axios.post(`${API}/deposit-action`, { depositId: id, action }, authHeaders);
-    fetchDeposits();
+    try {
+      const res = await axios.post(`${API}/deposit-action`, { depositId: id, action }, authHeaders);
+      alert(res.data.msg); // Success message
+      fetchDeposits(); // List refresh karo
+    } catch (err) {
+      if (err.response && err.response.status === 403) {
+        alert("Session expired. Please login again.");
+        handleLogout();
+      } else if (err.response && err.response.data && err.response.data.error) {
+        alert("Error: " + err.response.data.error); // Backend ka exact error dikhao
+      } else {
+        alert("Network Error: Could not reach backend.");
+      }
+    }
   };
 
   const handleWithdrawAction = async (id, action) => {
-    if(action === 'approve' && !window.confirm("Have you sent the money?")) return;
-    await axios.post(`${API}/withdraw-action`, { withdrawId: id, action }, authHeaders);
-    fetchWithdrawals();
+    if(action === 'approve') {
+      if(!window.confirm("Have you sent the money to the user?")) return;
+    }
+    try {
+      const res = await axios.post(`${API}/withdraw-action`, { withdrawId: id, action }, authHeaders);
+      alert(res.data.msg);
+      fetchWithdrawals();
+    } catch (err) {
+      if (err.response && err.response.status === 403) {
+        alert("Session expired. Please login again.");
+        handleLogout();
+      } else if (err.response && err.response.data && err.response.data.error) {
+        alert("Error: " + err.response.data.error);
+      } else {
+        alert("Network Error: Could not reach backend.");
+      }
+    }
   };
-
   // ================= LOGIN SCREEN =================
   if (!token) {
     return (
